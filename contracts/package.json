@@ -1,0 +1,28 @@
+{
+  "name": "campuschain-contracts",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Local Hardhat smart-contract layer for the CampusChain equipment-lending demo",
+  "scripts": {
+    "compile": "hardhat compile",
+    "typecheck": "hardhat compile && tsc --noEmit",
+    "test": "hardhat test",
+    "node": "hardhat node",
+    "deploy:local": "hardhat run scripts/deploy-local.ts --network localhost",
+    "clean": "hardhat clean"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "5.6.1"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "6.1.2",
+    "@types/chai": "4.3.20",
+    "@types/mocha": "10.0.10",
+    "@types/node": "22.19.0",
+    "chai": "4.5.0",
+    "ethers": "6.17.0",
+    "hardhat": "2.29.1",
+    "ts-node": "10.9.2",
+    "typescript": "5.9.3"
+  }
+}
