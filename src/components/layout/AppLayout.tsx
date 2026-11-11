@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { ShieldCheck } from 'lucide-react'
+import { useWallet } from '../../context/useWallet'
 import { ToastViewport } from '../ui/ToastViewport'
 import { Sidebar } from './Sidebar'
 import { Topbar } from './Topbar'
@@ -8,6 +9,20 @@ import { Topbar } from './Topbar'
 export function AppLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const location = useLocation()
+  const { status, isSupportedChain } = useWallet()
+
+  const walletSummary =
+    status === 'connected'
+      ? isSupportedChain
+        ? 'wallet local connecté'
+        : 'wallet sur réseau non pris en charge'
+      : status === 'checking'
+        ? 'vérification du wallet'
+        : status === 'connecting'
+          ? 'connexion du wallet'
+          : status === 'unavailable'
+            ? 'wallet indisponible'
+            : 'wallet non connecté'
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -31,7 +46,7 @@ export function AppLayout() {
             <p>CampusChain · Projet universitaire de gestion du prêt de matériel</p>
             <p className="inline-flex items-center gap-1.5">
               <ShieldCheck size={13} aria-hidden="true" />
-              Frontend de démonstration · blockchain non connectée
+              Données et transactions de prêt simulées · {walletSummary}
             </p>
           </div>
         </footer>

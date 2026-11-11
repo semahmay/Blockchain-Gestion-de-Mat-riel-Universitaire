@@ -17,6 +17,7 @@ import type { LucideIcon } from 'lucide-react'
 import { useApp } from '../../context/useApp'
 import { daysUntil, formatDate } from '../../lib/dates'
 import { cn } from '../../lib/utils'
+import { WalletButton } from '../wallet/WalletButton'
 import { Avatar } from '../ui/Avatar'
 import { Badge } from '../ui/Badge'
 import { Button } from '../ui/Button'
@@ -191,6 +192,10 @@ export function Topbar({ onOpenSidebar }: TopbarProps) {
           </button>
 
           <div ref={menuRef} className="flex items-center gap-1.5 sm:gap-2">
+            <WalletButton onOpen={() => setOpenMenu(null)} />
+
+            <div className="hidden h-8 w-px bg-line sm:block" />
+
             <div className="relative">
               <button
                 type="button"
